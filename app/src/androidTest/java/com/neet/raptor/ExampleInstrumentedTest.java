@@ -1,4 +1,4 @@
-package com.example.raptor;
+package com.neet.raptor;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

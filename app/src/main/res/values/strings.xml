@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Raptor</string>
+
+    <!--Login Page-->
+
+    <string name="label_login">Login</string>
+    <string name="label_forgot_password">Forgot Password</string>
+
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
 </resources>

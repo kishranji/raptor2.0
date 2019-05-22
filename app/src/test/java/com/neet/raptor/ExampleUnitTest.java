@@ -1,4 +1,4 @@
-package com.example.raptor;
+package com.neet.raptor;
 
 import org.junit.Test;
 
