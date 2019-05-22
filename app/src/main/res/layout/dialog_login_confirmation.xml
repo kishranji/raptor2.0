@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_20"
+    android:background="@drawable/bg_edittext"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/sub_title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/label_login_confirmation_msg" />
+
+    <Button
+        android:id="@+id/btn_okay"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+        android:background="@drawable/bg_login_btn"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8"
+        android:text="@string/label_okay"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_login_btn"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8"
+        android:text="@string/label_cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18" />
+
+</LinearLayout>
