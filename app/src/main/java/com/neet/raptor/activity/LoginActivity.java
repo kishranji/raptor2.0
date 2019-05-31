@@ -22,14 +22,14 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.txt_forgot_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                showCustomDialog();
             }
         });
 
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCustomDialog();
+
             }
         });
     }
@@ -73,6 +73,28 @@ public class LoginActivity extends AppCompatActivity {
 
         //then we will inflate the custom alert dialog xml that we created
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_otp_confirmation, viewGroup, false);
+
+        dialogView.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                confirmationAlertDialog.cancel();
+            }
+        });
+
+        dialogView.findViewById(R.id.btn_resend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmationAlertDialog.cancel();
+            }
+        });
+
+        dialogView.findViewById(R.id.txt_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmationAlertDialog.cancel();
+            }
+        });
 
         //Now we need an AlertDialog.Builder object
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

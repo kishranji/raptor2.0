@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#7c81c9</color>
+    <color name="colorPrimaryDark">#6a6eab</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="success">#4CAF50</color>
@@ -11,8 +11,14 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="grey">#cccccc</color>
+    <color name="grey_mid">#B3B3B3</color>
     <color name="dark_grey">#929292</color>
 
     <color name="red">#EC2E30</color>
+
+
+    <!--Login-->
+    <color name="login_bg">#7c81c9</color>
+    <color name="login_icn_bg">#6a6eab</color>
 
 </resources>

@@ -118,7 +118,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         mSplitWidth *= DENSITY;
         setWillNotDraw(false);
         initAttributes(context, attrs, defStyleAttr);
-        params = new LayoutParams(mPinWidth, mPinHeight);
+        params = new LayoutParams(mPinWidth-10, mPinHeight);
         setOrientation(HORIZONTAL);
         createEditTexts();
         super.setOnClickListener(new OnClickListener() {
