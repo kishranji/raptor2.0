@@ -13,9 +13,9 @@
     <color name="grey">#cccccc</color>
     <color name="grey_mid">#B3B3B3</color>
     <color name="dark_grey">#929292</color>
+    <color name="transparent">#00000000</color>
 
     <color name="red">#EC2E30</color>
-
 
     <!--Login-->
     <color name="login_bg">#7c81c9</color>

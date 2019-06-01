@@ -17,8 +17,8 @@
     <string name="hint_create_password">Create Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="label_reset">Reset</string>
-    <string name="label_go_back">Back</string>
+    <string name="label_go_back">Go Back</string>
     <string name="label_timer">Timer Comes here...</string>
-    <string name="label_submit_otp">SUBMIT OTP</string>
-    <string name="label_resend_otp">RESEND OTP</string>
+    <string name="label_submit_otp">SUBMIT</string>
+    <string name="label_resend_otp">RESEND</string>
 </resources>

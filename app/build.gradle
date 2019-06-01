@@ -16,12 +16,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 ext {
     supportLibraryVersion = '28.0.0'
     constraint = '1.1.3'
     flashbar = '1.0.3'
+    butterknife = '10.1.0'
 }
 
 dependencies {
@@ -32,4 +37,8 @@ dependencies {
     //material toast library
     implementation "com.andrognito.flashbar:flashbar:$flashbar"
     implementation "com.android.support.constraint:constraint-layout:$constraint"
+/*
+    //butterknife
+    implementation "com.jakewharton:butterknife:$butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"*/
 }

@@ -20,6 +20,7 @@
         android:background="@color/dark_grey" />
 
     <EditText
+        android:id="@+id/forgot_userid_EDT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -30,7 +31,7 @@
         android:drawablePadding="@dimen/margin_10"
         android:drawableTint="@color/grey_mid"
         android:hint="@string/hint_username"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:paddingLeft="@dimen/margin_12"
         android:paddingTop="@dimen/margin_12"
         android:paddingRight="@dimen/margin_12"

@@ -42,23 +42,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginBottom="@dimen/margin_5"
+            android:gravity="center">
 
-            <com.neet.raptor.views.Pinview
-                android:id="@+id/pinview"
-                android:layout_width="match_parent"
+            <com.neet.raptor.views.otp.OtpTextView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                app:cursorVisible="false"
-                app:forceKeyboard="true"
-                app:hint="0"
-                app:inputType="number"
-                app:password="false"
-                app:pinBackground="@drawable/sample_background"
-                app:pinHeight="40dp"
-                app:pinLength="6"
-                app:pinWidth="40dp" />
+                app:bar_enabled="false"
+                app:otp_box_background="@drawable/bg_pin"
+                android:layout_gravity="center"
+                app:height="40dp"
+                app:length="6"
+                app:otp=""
+                app:otp_text_size="18sp"
+                app:width="40dp" />
 
         </LinearLayout>
 

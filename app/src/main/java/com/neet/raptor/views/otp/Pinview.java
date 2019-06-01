@@ -1,24 +1,4 @@
-/*
-MIT License
-Copyright (c) 2017 GoodieBag
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
-
-package com.neet.raptor.views;
+package com.neet.raptor.views.otp;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.neet.raptor.R;
 
@@ -47,8 +28,24 @@ import static android.text.InputType.TYPE_CLASS_NUMBER;
 import static android.text.InputType.TYPE_CLASS_TEXT;
 import static android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD;
 
-public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusChangeListener, View.OnKeyListener {
-    private final float DENSITY = getContext().getResources().getDisplayMetrics().density;
+
+/**
+ * This class implements a pinview for android.
+ * It can be used as a widget in android to take passwords/OTP/pins etc.
+ * It is extended from a LinearLayout, implements TextWatcher, FocusChangeListener and OnKeyListener.
+ * Supports drawableItem/selectors as a background for each pin box.
+ * A listener is wired up to monitor complete data entry.
+ * Can toggle cursor visibility.
+ * Supports numpad and text keypad.
+ * Flawless focus change to the consecutive pinbox.
+ * Date : 11/01/17
+ *
+ * @author Krishanu
+ * @author Pavan
+ * @author Koushik
+ */
+public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusChangeListener, View.OnKeyListener, TextView.OnEditorActionListener {
+    private final float DENSITY = (getContext().getResources().getDisplayMetrics().density * 50) / 100;
     /**
      * Attributes
      */
@@ -70,6 +67,8 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     private boolean fromSetValue = false;
     private boolean mForceKeyboard = true;
 
+
+
     public enum InputType {
         TEXT, NUMBER
     }
@@ -87,7 +86,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     View currentFocus = null;
 
     InputFilter filters[] = new InputFilter[1];
-    LayoutParams params;
+    LinearLayout.LayoutParams params;
 
 
     public Pinview(Context context) {
@@ -118,7 +117,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         mSplitWidth *= DENSITY;
         setWillNotDraw(false);
         initAttributes(context, attrs, defStyleAttr);
-        params = new LayoutParams(mPinWidth-10, mPinHeight);
+        params = new LayoutParams(mPinWidth, mPinHeight);
         setOrientation(HORIZONTAL);
         createEditTexts();
         super.setOnClickListener(new OnClickListener() {
@@ -232,6 +231,42 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         styleEditText.addTextChangedListener(this);
         styleEditText.setOnFocusChangeListener(this);
         styleEditText.setOnKeyListener(this);
+        styleEditText.setOnEditorActionListener(this);
+    }
+
+    @Override
+    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        if ((keyEvent.getAction() == KeyEvent.ACTION_UP) || (keyEvent.getAction() == KeyEvent.KEYCODE_DEL)) {
+            // Perform action on Del press
+            int currentTag = getIndexOfCurrentFocus();
+            //Last tile of the number pad. Clear the edit text without changing the focus.
+            if (inputType == InputType.NUMBER && currentTag == mPinLength - 1 && finalNumberPin ||
+                    (mPassword && currentTag == mPinLength - 1 && finalNumberPin)) {
+                if (editTextList.get(currentTag).length() > 0) {
+                    editTextList.get(currentTag).setText("");
+                }
+                finalNumberPin = false;
+            } else if (currentTag > 0) {
+                mDelPressed = true;
+                if (editTextList.get(currentTag).length() == 0) {
+                    //Takes it back one tile
+                    editTextList.get(currentTag - 1).requestFocus();
+                    //Clears the tile it just got to
+                    editTextList.get(currentTag).setText("");
+                } else {
+                    //If it has some content clear it first
+                    editTextList.get(currentTag).setText("");
+                }
+            } else {
+                //For the first cell
+                if (editTextList.get(currentTag).getText().length() > 0)
+                    editTextList.get(currentTag).setText("");
+            }
+            return true;
+
+        }
+
+        return false;
     }
 
     private int getKeyboardInputType() {
@@ -446,6 +481,41 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((event.getAction() == KeyEvent.ACTION_UP) || (keyCode == KeyEvent.KEYCODE_DEL)) {
+            // Perform action on Del press
+            int currentTag = getIndexOfCurrentFocus();
+            //Last tile of the number pad. Clear the edit text without changing the focus.
+            if (inputType == InputType.NUMBER && currentTag == mPinLength - 1 && finalNumberPin ||
+                    (mPassword && currentTag == mPinLength - 1 && finalNumberPin)) {
+                if (editTextList.get(currentTag).length() > 0) {
+                    editTextList.get(currentTag).setText("");
+                }
+                finalNumberPin = false;
+            } else if (currentTag > 0) {
+                mDelPressed = true;
+                if (editTextList.get(currentTag).length() == 0) {
+                    //Takes it back one tile
+                    editTextList.get(currentTag - 1).requestFocus();
+                    //Clears the tile it just got to
+                    editTextList.get(currentTag).setText("");
+                } else {
+                    //If it has some content clear it first
+                    editTextList.get(currentTag).setText("");
+                }
+            } else {
+                //For the first cell
+                if (editTextList.get(currentTag).getText().length() > 0)
+                    editTextList.get(currentTag).setText("");
+            }
+            return true;
+
+        }
+
+        return false;
+    }
+
     /**
      * Monitors keyEvent.
      *
@@ -457,7 +527,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
 
-        if ((keyEvent.getAction() == KeyEvent.ACTION_UP) && (i == KeyEvent.KEYCODE_DEL)) {
+        if ((keyEvent.getAction() == KeyEvent.ACTION_UP) || (i == KeyEvent.KEYCODE_DEL)) {
             // Perform action on Del press
             int currentTag = getIndexOfCurrentFocus();
             //Last tile of the number pad. Clear the edit text without changing the focus.
