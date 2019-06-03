@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.neet.raptor.R;
 import com.neet.raptor.util.KToast;
+import com.neet.raptor.util.KeyboardUtils;
 import com.neet.raptor.views.otp.OTPListener;
 import com.neet.raptor.views.otp.OtpTextView;
 
@@ -59,9 +60,11 @@ public class LoginActivity extends AppCompatActivity {
         if (mUserId.getText().toString().trim().length() == 0) {
             mBoolean = false;
             KToast.errorToast(this, "Enter your user id");
+            KeyboardUtils.showSoftKeyboard(this, mUserId);
         } else if (mPassword.getText().toString().trim().length() == 0) {
             mBoolean = false;
             KToast.errorToast(this, "Enter your password");
+            KeyboardUtils.showSoftKeyboard(this, mPassword);
         }
 
         return mBoolean;
@@ -83,8 +86,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (aEditText.getText().toString().trim().length() == 0) {
-                   // KToast.errorToast(LoginActivity.this, "Enter your user id");
-                    Toast.makeText(LoginActivity.this,"Enter your user id",Toast.LENGTH_SHORT).show();
+                    // KToast.errorToast(LoginActivity.this, "Enter your user id");
+                    Toast.makeText(LoginActivity.this, "Enter your user id", Toast.LENGTH_SHORT).show();
+                    KeyboardUtils.showSoftKeyboard(LoginActivity.this, aEditText);
                     return;
                 }
                 confirmationAlertDialog.cancel();
@@ -138,8 +142,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (otpTextView.getOTP().trim().length() != 6) {
-                 //   KToast.errorToast(LoginActivity.this, "Enter your OTP");
-                    Toast.makeText(LoginActivity.this,"Enter your OTP",Toast.LENGTH_SHORT).show();
+                    //   KToast.errorToast(LoginActivity.this, "Enter your OTP");
+                    Toast.makeText(LoginActivity.this, "Enter your OTP", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 callForgotPassword();
@@ -172,14 +176,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void callForgotPassword() {
-        confirmationAlertDialog.cancel();
-        KToast.successToast(LoginActivity.this, "OTP validation success");
+        startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                confirmationAlertDialog.cancel();
             }
-        }, 2000);
-
+        }, 500);
     }
 }

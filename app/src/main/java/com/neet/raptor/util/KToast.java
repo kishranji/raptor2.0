@@ -602,6 +602,41 @@ public class KToast {
         builder.show();
     }
 
+    public static void successToast(FragmentActivity context, String aTitle, int gravity, int Duration) {
+        Long duration = Flashbar.DURATION_SHORT;
+        if (Duration == SHORT) {
+            duration = Flashbar.DURATION_SHORT;
+        } else if (Duration == LONG) {
+            duration = Flashbar.DURATION_LONG;
+        } else if (Duration == INFINITE) {
+            duration = Flashbar.DURATION_INDEFINITE;
+        }
+
+        Flashbar.Builder builder = new Flashbar.Builder(context)
+                .title(aTitle)
+                .showIcon()
+                .duration(duration)
+                .backgroundColorRes(R.color.success)
+                .icon(R.drawable.ic_success)
+                .iconColorFilterRes(R.color.white);
+
+        if (gravity == 0) {
+            builder.gravity(Flashbar.Gravity.BOTTOM);
+        } else {
+            builder.gravity(Flashbar.Gravity.TOP);
+        }
+        builder.enterAnimation(FlashAnim.with(context)
+                .animateBar()
+                .duration(750)
+                .alpha()
+                .overshoot())
+                .exitAnimation(FlashAnim.with(context)
+                        .animateBar()
+                        .duration(400)
+                        .accelerateDecelerate());
+        builder.show();
+    }
+
     public static void successToast(FragmentActivity context, String aTitle, String aMessage, int gravity) {
         Long duration = Flashbar.DURATION_SHORT;
 

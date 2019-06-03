@@ -72,7 +72,7 @@ public class ItemView extends FrameLayout {
         float barMarginTop = styles.getDimension(R.styleable.OtpTextView_bar_margin_top, DEFAULT_BAR_MARGIN);
         hideOTP = styles.getBoolean(R.styleable.OtpTextView_hide_otp, false);
         hideOTPDrawable = styles.getResourceId(R.styleable.OtpTextView_hide_otp_drawable
-                , R.drawable.bg_pin);
+                , R.drawable.bg_pin_default);
 
         defaultOTPDrawable = ResourcesCompat.getColor(context.getResources(), R.color.transparent, null);
 
