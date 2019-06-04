@@ -45,5 +45,7 @@
     <string name="hint_enter_your_mobile_number">Enter your mobile number …</string>
     <string name="hint_enter_your_title">Your Title here …</string>
     <string name="hint_enter_your_message">Enter Your message</string>
+    <string name="label_choose_file">Choose file</string>
+    <string name="label_browse">Browse</string>
 
 </resources>
