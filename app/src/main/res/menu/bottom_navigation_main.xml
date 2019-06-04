@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_ask_expert"
+        android:icon="@drawable/ic_ask_experts"
+        android:title="@string/label_ask_experts" />
+    <item
+        android:id="@+id/action_notification"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/notification" />
+    <item
+        android:id="@+id/action_help"
+        android:icon="@drawable/ic_hand_shake"
+        android:title="@string/help_desk" />
+</menu>

@@ -19,6 +19,7 @@
     <dimen name="margin_6">6dp</dimen>
     <dimen name="font_12">12sp</dimen>
     <dimen name="font_10">10sp</dimen>
+    <dimen name="font_22">22sp</dimen>
     <dimen name="margin_25dp">25dp</dimen>
     <dimen name="margin_2">2dp</dimen>
     <dimen name="margin_12">12dp</dimen>
@@ -29,6 +30,15 @@
     <dimen name="otp_view_item_spacing">5dp</dimen>
     <dimen name="otp_view_item_line_width">2dp</dimen>
     <dimen name="otp_view_cursor_width">2dp</dimen>
+
+
+    <!--Toolbar-->
+    <dimen name="toolbar_logo_width">64dp</dimen>
+    <dimen name="toolbar_logo_height">64dp</dimen>
+    <dimen name="nav_drawer_height">200dp</dimen>
+
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
 
 
 </resources>

@@ -9,6 +9,7 @@
     <color name="error">#F44336</color>
 
     <color name="white">#ffffff</color>
+    <color name="white_grey">#99DBD6D6</color>
     <color name="black">#000000</color>
     <color name="grey">#cccccc</color>
     <color name="grey_mid">#B3B3B3</color>
@@ -20,5 +21,13 @@
     <!--Login-->
     <color name="login_bg">#7c81c9</color>
     <color name="login_icn_bg">#6a6eab</color>
+
+    <color name="menu_blue">#4e73df</color>
+    <color name="menu_green">#1cc88a</color>
+    <color name="menu_yellow">#f6c23e</color>
+    <color name="menu_blue_dark">#36b9cc</color>
+    <color name="menu_red">#e74a3b</color>
+    <color name="menu_magento">#9f1cc8</color>
+
 
 </resources>

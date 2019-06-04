@@ -19,169 +19,181 @@ import com.neet.raptor.views.otp.OtpTextView;
 
 public class LoginActivity extends AppCompatActivity {
 
-    AlertDialog confirmationAlertDialog;
+   AlertDialog confirmationAlertDialog;
 
-    EditText mPassword, mUserId;
+   EditText mPassword, mUserId;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+   @Override
+   protected void onCreate( Bundle savedInstanceState ) {
+      super.onCreate( savedInstanceState );
+      setContentView( R.layout.activity_login );
 
-        mUserId = findViewById(R.id.user_id_EDT);
-        mPassword = findViewById(R.id.password_EDT);
+      mUserId = findViewById( R.id.user_id_EDT );
+      mPassword = findViewById( R.id.password_EDT );
 
-        findViewById(R.id.txt_forgot_password).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCustomDialog();
+      findViewById( R.id.txt_forgot_password ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+            showCustomDialog();
+         }
+      } );
+
+      findViewById( R.id.btn_login ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+
+            if( validation() ) {
+
+               callNextScreen();
             }
-        });
+         }
+      } );
+   }
 
-        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+   private void callNextScreen() {
+      KToast.successToast( this, "Login success" );
 
-                if (validation()) {
-                    callNextScreen();
-                }
+      Intent aIntent = new Intent( this, MainActivity.class );
+
+      if( mUserId.getText().toString().equalsIgnoreCase( "s" ) ) {
+         aIntent.putExtra( "value", "student" );
+      } else if( mUserId.getText().toString().equalsIgnoreCase( "p" ) ) {
+         aIntent.putExtra( "value", "parents" );
+      } else {
+         aIntent.putExtra( "value", "teacher" );
+      }
+      startActivity( aIntent );
+   }
+
+   private boolean validation() {
+
+      boolean mBoolean = true;
+
+      if( mUserId.getText().toString().trim().length() == 0 ) {
+         mBoolean = false;
+         KToast.errorToast( this, "Enter your user id" );
+         KeyboardUtils.showSoftKeyboard( this, mUserId );
+      } else if( mPassword.getText().toString().trim().length() == 0 ) {
+         mBoolean = false;
+         KToast.errorToast( this, "Enter your password" );
+         KeyboardUtils.showSoftKeyboard( this, mPassword );
+      }
+
+      return mBoolean;
+   }
+
+   private void showCustomDialog() {
+      //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+      ViewGroup viewGroup = findViewById( android.R.id.content );
+
+      //then we will inflate the custom alert dialog xml that we created
+      View dialogView = LayoutInflater.from( this ).inflate( R.layout.dialog_login_confirmation, viewGroup, false );
+
+
+      EditText aEditText = dialogView.findViewById( R.id.forgot_userid_EDT );
+
+
+      dialogView.findViewById( R.id.btn_okay ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+
+            if( aEditText.getText().toString().trim().length() == 0 ) {
+               // KToast.errorToast(LoginActivity.this, "Enter your user id");
+               Toast.makeText( LoginActivity.this, "Enter your user id", Toast.LENGTH_SHORT ).show();
+               KeyboardUtils.showSoftKeyboard( LoginActivity.this, aEditText );
+               return;
             }
-        });
-    }
+            confirmationAlertDialog.cancel();
+            showOTPDialog();
+         }
+      } );
 
-    private void callNextScreen() {
-        KToast.successToast(this, "Login success");
-    }
+      dialogView.findViewById( R.id.btn_cancel ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+            confirmationAlertDialog.cancel();
+         }
+      } );
 
-    private boolean validation() {
+      //Now we need an AlertDialog.Builder object
+      AlertDialog.Builder builder = new AlertDialog.Builder( this );
 
-        boolean mBoolean = true;
+      //setting the view of the builder to our custom view that we already inflated
+      builder.setView( dialogView );
 
-        if (mUserId.getText().toString().trim().length() == 0) {
-            mBoolean = false;
-            KToast.errorToast(this, "Enter your user id");
-            KeyboardUtils.showSoftKeyboard(this, mUserId);
-        } else if (mPassword.getText().toString().trim().length() == 0) {
-            mBoolean = false;
-            KToast.errorToast(this, "Enter your password");
-            KeyboardUtils.showSoftKeyboard(this, mPassword);
-        }
+      //finally creating the alert dialog and displaying it
+      confirmationAlertDialog = builder.create();
+      confirmationAlertDialog.show();
+   }
 
-        return mBoolean;
-    }
+   private void showOTPDialog() {
+      //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+      ViewGroup viewGroup = findViewById( android.R.id.content );
 
-    private void showCustomDialog() {
-        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
-        ViewGroup viewGroup = findViewById(android.R.id.content);
-
-        //then we will inflate the custom alert dialog xml that we created
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_login_confirmation, viewGroup, false);
-
-
-        EditText aEditText = dialogView.findViewById(R.id.forgot_userid_EDT);
+      //then we will inflate the custom alert dialog xml that we created
+      View dialogView = LayoutInflater.from( this ).inflate( R.layout.dialog_otp_confirmation, viewGroup, false );
 
 
-        dialogView.findViewById(R.id.btn_okay).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+      OtpTextView otpTextView = dialogView.findViewById( R.id.otp_view );
+      otpTextView.setOtpListener( new OTPListener() {
+         @Override
+         public void onInteractionListener() {
+            // fired when user types something in the Otpbox
+         }
 
-                if (aEditText.getText().toString().trim().length() == 0) {
-                    // KToast.errorToast(LoginActivity.this, "Enter your user id");
-                    Toast.makeText(LoginActivity.this, "Enter your user id", Toast.LENGTH_SHORT).show();
-                    KeyboardUtils.showSoftKeyboard(LoginActivity.this, aEditText);
-                    return;
-                }
-                confirmationAlertDialog.cancel();
-                showOTPDialog();
+         @Override
+         public void onOTPComplete( String otp ) {
+
+            // fired when user has entered the OTP fully.
+
+         }
+      } );
+
+      dialogView.findViewById( R.id.btn_submit ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+
+            if( otpTextView.getOTP().trim().length() != 6 ) {
+               //   KToast.errorToast(LoginActivity.this, "Enter your OTP");
+               Toast.makeText( LoginActivity.this, "Enter your OTP", Toast.LENGTH_SHORT ).show();
+               return;
             }
-        });
+            callForgotPassword();
+         }
+      } );
 
-        dialogView.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmationAlertDialog.cancel();
-            }
-        });
+      dialogView.findViewById( R.id.btn_resend ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+            confirmationAlertDialog.cancel();
+         }
+      } );
 
-        //Now we need an AlertDialog.Builder object
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      dialogView.findViewById( R.id.txt_back ).setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+            confirmationAlertDialog.cancel();
+         }
+      } );
 
-        //setting the view of the builder to our custom view that we already inflated
-        builder.setView(dialogView);
+      //Now we need an AlertDialog.Builder object
+      AlertDialog.Builder builder = new AlertDialog.Builder( this );
 
-        //finally creating the alert dialog and displaying it
-        confirmationAlertDialog = builder.create();
-        confirmationAlertDialog.show();
-    }
+      //setting the view of the builder to our custom view that we already inflated
+      builder.setView( dialogView );
 
-    private void showOTPDialog() {
-        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
-        ViewGroup viewGroup = findViewById(android.R.id.content);
+      //finally creating the alert dialog and displaying it
+      confirmationAlertDialog = builder.create();
+      confirmationAlertDialog.show();
+   }
 
-        //then we will inflate the custom alert dialog xml that we created
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_otp_confirmation, viewGroup, false);
-
-
-        OtpTextView otpTextView = dialogView.findViewById(R.id.otp_view);
-        otpTextView.setOtpListener(new OTPListener() {
-            @Override
-            public void onInteractionListener() {
-                // fired when user types something in the Otpbox
-            }
-
-            @Override
-            public void onOTPComplete(String otp) {
-
-                // fired when user has entered the OTP fully.
-
-            }
-        });
-
-        dialogView.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (otpTextView.getOTP().trim().length() != 6) {
-                    //   KToast.errorToast(LoginActivity.this, "Enter your OTP");
-                    Toast.makeText(LoginActivity.this, "Enter your OTP", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                callForgotPassword();
-            }
-        });
-
-        dialogView.findViewById(R.id.btn_resend).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmationAlertDialog.cancel();
-            }
-        });
-
-        dialogView.findViewById(R.id.txt_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmationAlertDialog.cancel();
-            }
-        });
-
-        //Now we need an AlertDialog.Builder object
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        //setting the view of the builder to our custom view that we already inflated
-        builder.setView(dialogView);
-
-        //finally creating the alert dialog and displaying it
-        confirmationAlertDialog = builder.create();
-        confirmationAlertDialog.show();
-    }
-
-    private void callForgotPassword() {
-        startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                confirmationAlertDialog.cancel();
-            }
-        }, 500);
-    }
+   private void callForgotPassword() {
+      startActivity( new Intent( LoginActivity.this, ForgotPasswordActivity.class ) );
+      new Handler().postDelayed( new Runnable() {
+         @Override
+         public void run() {
+            confirmationAlertDialog.cancel();
+         }
+      }, 500 );
+   }
 }
