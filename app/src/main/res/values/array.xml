@@ -10,6 +10,18 @@
         <item>@drawable/ic_test_review</item>
     </string-array>
 
+    <string-array name="common_menu_icon">
+        <item>@drawable/ic_task</item>
+        <item>@drawable/ic_test_review</item>
+        <item>@drawable/ic_file</item>
+        <item>@drawable/ic_test_portion</item>
+        <item>@drawable/ic_assign_test</item>
+        <item>@drawable/ic_test_review</item>
+        <item>@drawable/ic_ask_experts</item>
+        <item>@drawable/ic_notifications</item>
+        <item>@drawable/ic_hand_shake</item>
+    </string-array>
+
 
     <integer-array name="menu_color_student">
         <item>@color/menu_blue</item>

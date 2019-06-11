@@ -84,11 +84,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                app:itemBackground="@color/colorPrimaryDark"
-                app:labelVisibilityMode="labeled"
+                android:visibility="gone"
                 app:elevation="@dimen/margin_16"
+                app:itemBackground="@color/colorPrimaryDark"
                 app:itemIconTint="@drawable/bg_bottombar"
                 app:itemTextColor="@drawable/bg_bottombar"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_navigation_main" />
         </RelativeLayout>
     </android.support.design.widget.CoordinatorLayout>
@@ -103,8 +104,7 @@
         app:headerLayout="@layout/drawer_header"
         app:itemBackground="@color/white"
         app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:menu="@menu/drawer">
+        app:itemTextColor="@color/black">
 
         <TextView
             android:id="@+id/tv_app_version"

@@ -30,7 +30,19 @@
         <item>TEST PORTION</item>
         <item>ASSIGN TEST</item>
         <item>TEST REVIEW</item>
+    </string-array>
 
+
+    <string-array name="common_menu_items">
+        <item>Tests</item>
+        <item>Test Review</item>
+        <item>Reports</item>
+        <item>Test Portion</item>
+        <item>Assign Test</item>
+        <item>Test Review</item>
+        <item>Ask Your Experts</item>
+        <item>Notification</item>
+        <item>Help Desk</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -47,5 +59,11 @@
     <string name="hint_enter_your_message">Enter Your message</string>
     <string name="label_choose_file">Choose file</string>
     <string name="label_browse">Browse</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
 
 </resources>

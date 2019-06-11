@@ -65,45 +65,8 @@ public class DashboardFragment extends Fragment {
 
 
    private void configRecycler() {
-      /*GridLayoutManager layoutManager = new GridLayoutManager( mContext, 2 );
-      layoutManager.setSpanSizeLookup( new GridLayoutManager.SpanSizeLookup() {
-         @Override
-         public int getSpanSize( int position ) {
-            int aSize = mMenuArrayList.size();
-            if( aSize == 1 )
-               return 2;
-            else if( aSize == 2 )
-               return 2;
-            else {
-               return 1;
-            }
-         }
-      } );
-*/
 
       GridLayoutManager layoutManager = new GridLayoutManager( mContext, 2 );
-     /* layoutManager.setSpanSizeLookup( new GridLayoutManager.SpanSizeLookup() {
-         @Override
-         public int getSpanSize( int position ) {
-            int aSize = mMenuArrayList.size();
-
-          *//*  if( aSize == 1 )
-               return 6;
-            else if( aSize == 2 )
-               return 3;
-            else if( aSize == 3 ) {
-               if( position == 2 ) return 6;
-               else return 3;
-            } else if( aSize == 4 )
-               return 3;
-            else {*//*
-            if( position == 6 || position == 8 || position == 7 ) return 2;
-            else return 3;
-
-            // }
-         }
-      } );*/
-
       mRecyclerView.setLayoutManager( layoutManager );
       mDashboardAdapter = new DashboardAdapter( mContext, mMenuArrayList );
       mRecyclerView.setAdapter( mDashboardAdapter );

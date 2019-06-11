@@ -8,14 +8,6 @@
     android:orientation="vertical"
     tools:context="com.neet.raptor.fragment.AskExpertFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/help_desk"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_22" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,6 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/help_desk"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_22" />
 
             <EditText
                 android:id="@+id/user_name_EDT"
