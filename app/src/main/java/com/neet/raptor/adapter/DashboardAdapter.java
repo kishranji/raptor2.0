@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.neet.raptor.R;
@@ -21,72 +23,85 @@ import java.util.Collections;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
-   private APPFragmentManager mFragmentManager;
-   FragmentActivity mContext;
-   ArrayList<String> mMenuInfoList;
-   private ArrayList<Integer> myIcons;
-   private ArrayList<Integer> myIconsColor;
+    private APPFragmentManager mFragmentManager;
+    FragmentActivity mContext;
+    ArrayList<String> mMenuInfoList;
+    private ArrayList<Integer> myIcons;
 
-   int[] mStringColor;
+    DashboardMenuCallback mMenuCallback;
 
-   public DashboardAdapter( FragmentActivity context, ArrayList<String> aMenuList ) {
-      try {
-         mContext = context;
-         //    myMenuInfoList = cropInfoList;
-         mMenuInfoList = aMenuList;
-         mFragmentManager = new APPFragmentManager( mContext );
+    int[] mStringColor;
 
-         myIcons = new ArrayList<>();
-         myIconsColor = new ArrayList<>();
-         TypedArray aIcons = mContext.getResources().obtainTypedArray( R.array.menu_icon_student );
-         mStringColor = mContext.getResources().getIntArray( R.array.menu_color_student );
+    public DashboardAdapter(FragmentActivity context, ArrayList<String> aMenuList, DashboardMenuCallback aMenuCallback) {
+        try {
+            mContext = context;
+            //    myMenuInfoList = cropInfoList;
+            mMenuInfoList = aMenuList;
+            mFragmentManager = new APPFragmentManager(mContext);
+            mMenuCallback = aMenuCallback;
+            myIcons = new ArrayList<>();
 
-
-         for( int i = 0; i < aIcons.length(); i++ ) {
-            myIcons.add( aIcons.getResourceId( i, -1 ) );
-         }
+            TypedArray aIcons = mContext.getResources().obtainTypedArray(R.array.menu_icon_student);
+            mStringColor = mContext.getResources().getIntArray(R.array.menu_color_student);
 
 
-      } catch( Exception e ) {
-         e.printStackTrace();
-      }
-   }
+            for (int i = 0; i < aIcons.length(); i++) {
+                myIcons.add(aIcons.getResourceId(i, -1));
+            }
 
-   @NonNull
-   @Override
-   public ViewHolder onCreateViewHolder( @NonNull ViewGroup parent, int i ) {
-      View itemView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.layout_inflate_menu_item, parent, false );
-      return new ViewHolder( itemView );
-   }
 
-   @Override
-   public void onBindViewHolder( @NonNull ViewHolder viewHolder, int i ) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-      viewHolder.mMenuName.setText( mMenuInfoList.get( i ) );
-      viewHolder.mMenuImage.setImageResource( myIcons.get( i ) );
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_inflate_menu_item, parent, false);
+        return new ViewHolder(itemView);
+    }
 
-      viewHolder.mView.setBackgroundColor( mStringColor[ i ] );
-      viewHolder.mMenuImage.setColorFilter( mStringColor[ i ], android.graphics.PorterDuff.Mode.SRC_IN );
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-   }
+        viewHolder.mMenuName.setText(mMenuInfoList.get(i));
+        viewHolder.mMenuImage.setImageResource(myIcons.get(i));
 
-   @Override
-   public int getItemCount() {
-      return mMenuInfoList.size();
-   }
+        viewHolder.mView.setBackgroundColor(mStringColor[i]);
+        viewHolder.mMenuImage.setColorFilter(mStringColor[i], android.graphics.PorterDuff.Mode.SRC_IN);
 
-   class ViewHolder extends RecyclerView.ViewHolder {
+        viewHolder.mMenuLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMenuCallback.menuItem(i);
+            }
+        });
+    }
 
-      TextView mMenuName;
-      ImageView mMenuImage;
-      View mView;
+    @Override
+    public int getItemCount() {
+        return mMenuInfoList.size();
+    }
 
-      ViewHolder( @NonNull View itemView ) {
-         super( itemView );
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-         mMenuName = itemView.findViewById( R.id.menu_name );
-         mMenuImage = itemView.findViewById( R.id.menu_image );
-         mView = itemView.findViewById( R.id.corner_background );
-      }
-   }
+        TextView mMenuName;
+        ImageView mMenuImage;
+        CardView mMenuLayout;
+        View mView;
+
+        ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            mMenuName = itemView.findViewById(R.id.menu_name);
+            mMenuImage = itemView.findViewById(R.id.menu_image);
+            mView = itemView.findViewById(R.id.corner_background);
+            mMenuLayout = itemView.findViewById(R.id.menu_layout);
+        }
+    }
+
+    public interface DashboardMenuCallback {
+        void menuItem(int position);
+    }
 }

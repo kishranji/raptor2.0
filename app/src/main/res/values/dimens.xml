@@ -39,6 +39,9 @@
 
     <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_3dp">3dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_36">36dp</dimen>
 
 
 </resources>

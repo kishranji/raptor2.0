@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public void menuItem(int position) {
                 closeDrawer();
                 switch (position) {
-                    case 0:
+                    case 4:
                         mFragmentManager.updateContent(new AssignTestFragment(), "AssignTestFragment", null);
                         break;
                     case 6:
@@ -107,9 +107,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     case 8:
                         mFragmentManager.updateContent(new HelpFragment(), "HelpFragment", null);
                         break;
+                    default:
+                        Toast.makeText(MainActivity.this, "Inprogress", Toast.LENGTH_SHORT).show();
                 }
 
-                Toast.makeText(MainActivity.this, "TEST", Toast.LENGTH_SHORT).show();
+
             }
         };
 

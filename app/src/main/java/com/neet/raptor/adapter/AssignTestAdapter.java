@@ -45,8 +45,8 @@ public class AssignTestAdapter extends RecyclerView.Adapter<AssignTestAdapter.Vi
         AssignTestModel aTestModel = mAssignList.get(i);
         viewHolder.mAssignName.setText(aTestModel.mName);
         viewHolder.mAssignRoll.setText(aTestModel.mRollno);
-        viewHolder.mAssignClass.setText(aTestModel.mClass);
-        viewHolder.mAssignSection.setText(aTestModel.mSection);
+        viewHolder.mAssignClass.setText(String.format("%s-%s", aTestModel.mClass, aTestModel.mSection));
+        // viewHolder.mAssignSection.setText(aTestModel.mSection);
         viewHolder.mAssignSchedule.setText(aTestModel.mSchedule);
         viewHolder.mAssignType.setText(aTestModel.mType);
         viewHolder.mAssignCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -74,7 +74,7 @@ public class AssignTestAdapter extends RecyclerView.Adapter<AssignTestAdapter.Vi
             mAssignName = itemView.findViewById(R.id.assign_name_txt);
             mAssignRoll = itemView.findViewById(R.id.assign_roll_txt);
             mAssignClass = itemView.findViewById(R.id.assign_class_txt);
-            mAssignSection = itemView.findViewById(R.id.assign_section_txt);
+            // mAssignSection = itemView.findViewById(R.id.assign_section_txt);
             mAssignSchedule = itemView.findViewById(R.id.assign_schedule_txt);
             mAssignType = itemView.findViewById(R.id.assign_type_txt);
         }

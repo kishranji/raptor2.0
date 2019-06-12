@@ -47,7 +47,7 @@ public class AssignTestFragment extends Fragment {
 
         for (int i = 0; i <= 10; i++) {
             AssignTestModel aTestModel = new AssignTestModel();
-            aTestModel.mName = "Test" + i;
+            aTestModel.mName = "TestName" + i;
             aTestModel.mRollno = "1000" + i;
             aTestModel.mClass = "11";
             aTestModel.mSection = "A";
