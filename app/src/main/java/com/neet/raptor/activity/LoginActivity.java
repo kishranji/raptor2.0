@@ -67,11 +67,15 @@ public class LoginActivity extends AppCompatActivity {
 
    private void changePasswordView() {
 
-      if( showPass )
+      if( showPass ) {
          mPassword.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
-      else
+         mShowPassBtn.setImageResource( R.drawable.ic_eye_close );
+      }
+      else {
          mPassword.setInputType( InputType.TYPE_CLASS_TEXT |
                  InputType.TYPE_TEXT_VARIATION_PASSWORD );
+         mShowPassBtn.setImageResource( R.drawable.ic_eye );
+      }
 
       int pos = mPassword.getText().length();
       mPassword.setSelection( pos );
@@ -82,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
       KToast.successToast( this, "Login success" );
 
       Intent aIntent = new Intent( this, MainActivity.class );
+
 
       if( mUserId.getText().toString().equalsIgnoreCase( "s" ) ) {
          aIntent.putExtra( "value", "student" );
