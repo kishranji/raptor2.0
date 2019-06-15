@@ -23,15 +23,24 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     ArrayList<String> mMenuInfoList;
     private ArrayList<Integer> myIcons;
     Menucallback mMenucallback;
+    String mUser;
 
-    public MenuAdapter(FragmentActivity context, ArrayList<String> aMenuList, Menucallback aMenucallback) {
+    public MenuAdapter( FragmentActivity context, ArrayList<String> aMenuList, Menucallback aMenucallback, String value ) {
         try {
             mContext = context;
             mMenuInfoList = aMenuList;
             mFragmentManager = new APPFragmentManager(mContext);
             mMenucallback = aMenucallback;
             myIcons = new ArrayList<>();
-            TypedArray aIcons = mContext.getResources().obtainTypedArray(R.array.common_menu_icon);
+            mUser = value;
+            TypedArray aIcons ;
+
+            if( mUser.equals( "student" ) )
+                aIcons = mContext.getResources().obtainTypedArray(R.array.nav_menu_icon_student );
+            else if( mUser.equals( "teacher" ) )
+                aIcons = mContext.getResources().obtainTypedArray(R.array.nav_menu_icon_teacher );
+            else
+                aIcons = mContext.getResources().obtainTypedArray(R.array.nav_menu_icon_parent );
 
             for (int i = 0; i < aIcons.length(); i++) {
                 myIcons.add(aIcons.getResourceId(i, -1));

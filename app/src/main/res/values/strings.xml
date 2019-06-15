@@ -23,7 +23,7 @@
     <string name="label_resend_otp">RESEND</string>
 
 
-    <string-array name="student_menu_items">
+    <string-array name="student_dash_items">
         <item>TESTS</item>
         <item>TEST REVIEW</item>
         <item>REPORTS</item>
@@ -32,8 +32,49 @@
         <item>TEST REVIEW</item>
     </string-array>
 
+    <string-array name="parents_dash_items">
+        <item>TESTS</item>
+        <item>TEST REVIEW</item>
+        <item>REPORTS</item>
+        <item>TEST PORTION</item>
+        <item>ASSIGN TEST</item>
+        <item>TEST REVIEW</item>
+    </string-array>
 
-    <string-array name="common_menu_items">
+    <string-array name="teacher_dash_items">
+        <item>CREATE TEST</item>
+        <item>REVIEW TEST</item>
+        <item>REPORTS</item>
+        <item>ADD TEST PORTION</item>
+        <item>ASSIGN TEST</item>
+        <item>REVIEW TEST</item>
+    </string-array>
+
+    <string-array name="nav_menu_teacher">
+        <item>Create tests</item>
+        <item>Review Test</item>
+        <item>Reports</item>
+        <item>Add Test Portion</item>
+        <item>Assign Test</item>
+        <item>Review Test</item>
+        <item>Ask Your Experts</item>
+        <item>Notification</item>
+        <item>Help Desk</item>
+    </string-array>
+
+    <string-array name="nav_menu_students">
+        <item>Tests</item>
+        <item>Test Review</item>
+        <item>Reports</item>
+        <item>Test Portion</item>
+        <item>Assign Test</item>
+        <item>Test Review</item>
+        <item>Ask Your Experts</item>
+        <item>Notification</item>
+        <item>Help Desk</item>
+    </string-array>
+
+    <string-array name="nav_menu_parent">
         <item>Tests</item>
         <item>Test Review</item>
         <item>Reports</item>
@@ -65,5 +106,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
+
 
 </resources>

@@ -22,10 +22,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_10"
                 android:gravity="center"
                 android:text="@string/help_desk"
                 android:textAllCaps="true"
-                android:layout_margin="@dimen/margin_10"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_22" />
 
@@ -122,6 +122,7 @@
                     android:hint="@string/hint_enter_your_mobile_number"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
+                    android:digits="0123456789"
                     android:maxLength="10"
                     android:paddingLeft="@dimen/margin_12"
                     android:paddingTop="@dimen/margin_12"
@@ -209,11 +210,14 @@
                 android:background="@drawable/bg_login_edt">
 
                 <TextView
+                    android:id="@+id/file_name_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/user_browse_txt"
+                    android:ellipsize="middle"
                     android:padding="@dimen/margin_12"
+                    android:singleLine="true"
                     android:text="@string/label_choose_file"
                     android:textSize="@dimen/font_16" />
 
@@ -232,6 +236,7 @@
             </RelativeLayout>
 
             <Button
+                android:id="@+id/expert_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_16"

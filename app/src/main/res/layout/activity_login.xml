@@ -48,26 +48,44 @@
                 android:paddingBottom="@dimen/margin_12"
                 android:singleLine="true"
                 android:textSize="@dimen/font_16" />
-
-            <EditText
-                android:id="@+id/password_EDT"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/margin_16"
-                android:background="@drawable/bg_login_edt"
-                android:drawableLeft="@drawable/ic_login_pass"
-                android:drawablePadding="@dimen/margin_10"
-                android:drawableTint="@color/grey_mid"
-                android:hint="@string/hint_password"
-                android:imeOptions="actionDone"
-                android:paddingLeft="@dimen/margin_12"
-                android:paddingTop="@dimen/margin_12"
-                android:paddingRight="@dimen/margin_12"
-                android:paddingBottom="@dimen/margin_12"
-                android:singleLine="true"
-                android:textSize="@dimen/font_16" />
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/password_EDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="@dimen/margin_16"
+                    android:background="@drawable/bg_login_edt"
+                    android:drawableLeft="@drawable/ic_login_pass"
+                    android:drawablePadding="@dimen/margin_10"
+                    android:drawableTint="@color/grey_mid"
+                    android:hint="@string/hint_password"
+                    android:imeOptions="actionDone"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:paddingTop="@dimen/margin_12"
+                    android:inputType="textPassword"
+                    android:paddingRight="@dimen/margin_12"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:singleLine="true"
+                    android:textSize="@dimen/font_16" />
+
+                <ImageView
+                    android:id="@+id/login_show_pass"
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="@dimen/dimen_30"
+                    android:src="@drawable/ic_eye"
+                    android:tint="@color/grey"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+
 
 
             <RelativeLayout

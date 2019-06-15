@@ -67,6 +67,17 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/assign_task_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/expert_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:background="@drawable/bg_login_btn"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/margin_16" />
 
 </LinearLayout>

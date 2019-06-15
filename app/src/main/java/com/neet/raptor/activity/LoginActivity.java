@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.neet.raptor.R;
@@ -23,6 +25,10 @@ public class LoginActivity extends AppCompatActivity {
 
    EditText mPassword, mUserId;
 
+   ImageView mShowPassBtn;
+
+   Boolean showPass = false;
+
    @Override
    protected void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
@@ -30,11 +36,20 @@ public class LoginActivity extends AppCompatActivity {
 
       mUserId = findViewById( R.id.user_id_EDT );
       mPassword = findViewById( R.id.password_EDT );
+      mShowPassBtn = findViewById( R.id.login_show_pass );
 
       findViewById( R.id.txt_forgot_password ).setOnClickListener( new View.OnClickListener() {
          @Override
          public void onClick( View view ) {
             showCustomDialog();
+         }
+      } );
+
+      mShowPassBtn.setOnClickListener( new View.OnClickListener() {
+         @Override
+         public void onClick( View view ) {
+            showPass = !showPass;
+            changePasswordView();
          }
       } );
 
@@ -48,6 +63,19 @@ public class LoginActivity extends AppCompatActivity {
             }
          }
       } );
+   }
+
+   private void changePasswordView() {
+
+      if( showPass )
+         mPassword.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
+      else
+         mPassword.setInputType( InputType.TYPE_CLASS_TEXT |
+                 InputType.TYPE_TEXT_VARIATION_PASSWORD );
+
+      int pos = mPassword.getText().length();
+      mPassword.setSelection( pos );
+
    }
 
    private void callNextScreen() {
@@ -77,6 +105,9 @@ public class LoginActivity extends AppCompatActivity {
          mBoolean = false;
          KToast.errorToast( this, "Enter your password" );
          KeyboardUtils.showSoftKeyboard( this, mPassword );
+      } else if( !mUserId.getText().toString().trim().equals( mPassword.getText().toString().trim() ) ) {
+         mBoolean = false;
+         KToast.errorToast( this, "Invalid user name and password" );
       }
 
       return mBoolean;

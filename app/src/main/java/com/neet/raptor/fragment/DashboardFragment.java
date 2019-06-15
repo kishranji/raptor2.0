@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.neet.raptor.R;
-import com.neet.raptor.activity.MainActivity;
 import com.neet.raptor.adapter.DashboardAdapter;
 import com.neet.raptor.fragmentmanager.APPFragmentManager;
 
@@ -24,6 +23,7 @@ public class DashboardFragment extends Fragment {
 
     View mView;
     RecyclerView mRecyclerView;
+    String mPassvalue;
 
     FragmentActivity mContext;
     APPFragmentManager mFragmentManager;
@@ -50,15 +50,15 @@ public class DashboardFragment extends Fragment {
         mRecyclerView = mView.findViewById(R.id.dashboard_recyclerview);
         mMenuArrayList = new ArrayList<>();
 
-        String aPassvalue = getArguments().getString("passvalue");
-        if (aPassvalue.equals("student")) {
-            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.student_menu_items);
+        mPassvalue = getArguments().getString("passvalue");
+        if (mPassvalue.equals("student")) {
+            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.student_dash_items );
             Collections.addAll(mMenuArrayList, aMenuTitles);
-        } else if (aPassvalue.equals("parents")) {
-            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.student_menu_items);
+        } else if (mPassvalue.equals("parents")) {
+            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.parents_dash_items );
             Collections.addAll(mMenuArrayList, aMenuTitles);
         } else {
-            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.student_menu_items);
+            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.teacher_dash_items );
             Collections.addAll(mMenuArrayList, aMenuTitles);
         }
 
@@ -85,7 +85,7 @@ public class DashboardFragment extends Fragment {
             }
         };
 
-        mDashboardAdapter = new DashboardAdapter(mContext, mMenuArrayList, aMenuCallback);
+        mDashboardAdapter = new DashboardAdapter(mContext, mMenuArrayList, aMenuCallback,mPassvalue);
         mRecyclerView.setAdapter(mDashboardAdapter);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
