@@ -76,6 +76,9 @@ public class DashboardFragment extends Fragment {
             @Override
             public void menuItem(int position) {
                 switch (position) {
+                    case 3:
+                        mFragmentManager.updateContent(new TestPortionFragment(), "TestPortionFragment", null);
+                        break;
                     case 4:
                         mFragmentManager.updateContent(new AssignTestFragment(), "AssignTestFragment", null);
                         break;

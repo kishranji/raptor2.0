@@ -27,6 +27,7 @@ import com.neet.raptor.fragment.AssignTestFragment;
 import com.neet.raptor.fragment.DashboardFragment;
 import com.neet.raptor.fragment.HelpFragment;
 import com.neet.raptor.fragment.NotificationFragment;
+import com.neet.raptor.fragment.TestPortionFragment;
 import com.neet.raptor.fragmentmanager.APPFragmentManager;
 
 import java.util.ArrayList;
@@ -103,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
          public void menuItem( int position ) {
             closeDrawer();
             switch( position ) {
+               case 3:
+                  mFragmentManager.updateContent( new TestPortionFragment(), "TestPortionFragment", null );
+                  break;
                case 4:
                   mFragmentManager.updateContent( new AssignTestFragment(), "AssignTestFragment", null );
                   break;
