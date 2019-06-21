@@ -3,12 +3,10 @@
     <dimen name="image_height_120">120dp</dimen>
     <dimen name="image_width_120">120dp</dimen>
 
-
     <dimen name="font_14">14sp</dimen>
     <dimen name="font_16">16sp</dimen>
     <dimen name="font_18">18sp</dimen>
     <dimen name="font_20">20sp</dimen>
-
 
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
@@ -31,7 +29,6 @@
     <dimen name="otp_view_item_line_width">2dp</dimen>
     <dimen name="otp_view_cursor_width">2dp</dimen>
 
-
     <!--Toolbar-->
     <dimen name="toolbar_logo_width">64dp</dimen>
     <dimen name="toolbar_logo_height">64dp</dimen>
@@ -45,6 +42,5 @@
     <dimen name="dimen_30">30dp</dimen>
     <dimen name="image_width_180">180dp</dimen>
     <dimen name="font_25">25sp</dimen>
-
 
 </resources>
