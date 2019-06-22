@@ -119,6 +119,23 @@
 
                         </RelativeLayout>
 
+                        <RelativeLayout
+                            android:id="@+id/signout_lay"
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/logout"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/margin_8"
+                            android:src="@drawable/ic_sign_out"
+                            android:tint="@color/white" />
+                        </RelativeLayout>
+
                     </LinearLayout>
 
                 </RelativeLayout>

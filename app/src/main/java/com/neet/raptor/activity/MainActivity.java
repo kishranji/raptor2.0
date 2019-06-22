@@ -10,12 +10,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +34,7 @@ import com.neet.raptor.fragment.HelpFragment;
 import com.neet.raptor.fragment.NotificationFragment;
 import com.neet.raptor.fragment.TestPortionFragment;
 import com.neet.raptor.fragmentmanager.APPFragmentManager;
+import com.neet.raptor.util.KeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private ArrayList<String> mMenuArrayList;
     private MenuAdapter mMenurecyclerAdapter;
     DrawerLayout mDrawerLayout;
-    RelativeLayout notificationLay, messageLay;
+    RelativeLayout notificationLay, messageLay, signoutLay;
+
+    AlertDialog confirmationAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mMenuIcon = findViewById(R.id.activity_menu_right);
         notificationLay = findViewById(R.id.notification_lay);
         messageLay = findViewById(R.id.message_lay);
+        signoutLay = findViewById(R.id.signout_lay);
 
         setMenuRecycler();
         mNavigation.setOnNavigationItemSelectedListener(this);
@@ -96,6 +104,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public void onClick(View view) {
                 mFragmentManager.updateContent(new NotificationFragment(), "NotificationFragment", null);
+            }
+        });
+
+        signoutLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoutDialog();
             }
         });
     }
@@ -212,5 +227,39 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } catch (Exception e) {
             Log.d("ERROR", e.toString());
         }
+    }
+
+    private void logoutDialog() {
+        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+        ViewGroup viewGroup = findViewById( android.R.id.content );
+
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from( this ).inflate( R.layout.layout_logout_confirmation, viewGroup, false );
+
+
+        dialogView.findViewById( R.id.btn_logout ).setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                confirmationAlertDialog.cancel();
+                finish();
+            }
+        } );
+
+        dialogView.findViewById( R.id.btn_cancel ).setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                confirmationAlertDialog.cancel();
+            }
+        } );
+
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+
+        //setting the view of the builder to our custom view that we already inflated
+        builder.setView( dialogView );
+
+        //finally creating the alert dialog and displaying it
+        confirmationAlertDialog = builder.create();
+        confirmationAlertDialog.show();
     }
 }

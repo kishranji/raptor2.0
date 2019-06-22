@@ -106,6 +106,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
+    <string name="label_logout">Ready to Leave?</string>
+    <string name="label_logout_confirmation">Select \"Logout\" below if you are ready to end your current session.</string>
+    <string name="label_logout_btn">LOGOUT</string>
 
 
 </resources>
