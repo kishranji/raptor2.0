@@ -42,5 +42,6 @@
     <dimen name="dimen_30">30dp</dimen>
     <dimen name="image_width_180">180dp</dimen>
     <dimen name="font_25">25sp</dimen>
+    <dimen name="margin_25">25dp</dimen>
 
 </resources>

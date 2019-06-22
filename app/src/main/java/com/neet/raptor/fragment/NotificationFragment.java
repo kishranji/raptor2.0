@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.neet.raptor.R;
-import com.neet.raptor.adapter.AssignTestAdapter;
 import com.neet.raptor.adapter.NotificationAdapter;
-import com.neet.raptor.model.AssignTestModel;
+import com.neet.raptor.model.NotificationModel;
 
 import java.util.ArrayList;
 
@@ -26,6 +25,7 @@ public class NotificationFragment extends Fragment {
     private RecyclerView recyclerView;
     NotificationAdapter mAdapter;
     FragmentActivity myContext;
+    private ArrayList<NotificationModel> notificationArray;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,25 +49,23 @@ public class NotificationFragment extends Fragment {
     }
 
     private void setRecyclerView() {
-        /*LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        mAssignRecyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
 
-        mAssignList = new ArrayList<>();
+        notificationArray = new ArrayList<>();
 
-        for (int i = 0; i <= 10; i++) {
-            AssignTestModel aTestModel = new AssignTestModel();
-            aTestModel.mName = "TestName" + i;
-            aTestModel.mRollno = "1000" + i;
-            aTestModel.mClass = "11";
-            aTestModel.mSection = "A";
-            aTestModel.mSchedule = "11/09/2019";
-            aTestModel.mType = "NEET";
+        for (int i = 0; i <= 5; i++) {
+            NotificationModel aNotificationModel = new NotificationModel();
+            aNotificationModel.setId("" + i);
+            aNotificationModel.setTitle("Message Title " + (i + 1));
+            aNotificationModel.setCreatedBy("Admin : " + (45 + i) + "m");
+            aNotificationModel.setMessage("This is an sample message. you can replace with original");
 
-            mAssignList.add(aTestModel);
+            notificationArray.add(aNotificationModel);
         }
 
-        mAssignrecyclerAdapter = new AssignTestAdapter(getActivity(), mAssignList);
-        mAssignRecyclerView.setAdapter(mAssignrecyclerAdapter);*/
+        mAdapter = new NotificationAdapter(getActivity(), notificationArray);
+        recyclerView.setAdapter(mAdapter);
     }
 
     private void listener() {
