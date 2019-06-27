@@ -109,6 +109,12 @@
     <string name="label_logout">Ready to Leave?</string>
     <string name="label_logout_confirmation">Select \"Logout\" below if you are ready to end your current session.</string>
     <string name="label_logout_btn">LOGOUT</string>
+    <string name="introduction">Introduction</string>
+    <string name="take_test_info">This section consites of questions obtained from PHYSICS, CHEMISTRY and BIOLOGY subjects from choosen NEET question paper. The question can be categorized into different competency levels  and each competency can be categorized into different complexity levels.
+    \n\nYou have to choose  the most appropriate option for the question.
+    \n\nThis section consites of questions obtained from PHYSICS, CHEMISTRY and BIOLOGY subjects from choosen NEET question paper. The question can be categorized into different competency levels  and each competency can be categorized into different complexity levels.</string>
+    <string name="take_a_test">Take a test</string>
+    <string name="full_test">Full test</string>
 
 
 </resources>

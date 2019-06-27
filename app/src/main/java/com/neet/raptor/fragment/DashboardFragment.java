@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.neet.raptor.R;
 import com.neet.raptor.adapter.DashboardAdapter;
+import com.neet.raptor.fragment.student.TakeTestIntroFragment;
 import com.neet.raptor.fragmentmanager.APPFragmentManager;
 
 import java.util.ArrayList;
@@ -52,13 +53,13 @@ public class DashboardFragment extends Fragment {
 
         mPassvalue = getArguments().getString("passvalue");
         if (mPassvalue.equals("student")) {
-            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.student_dash_items );
+            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.student_dash_items);
             Collections.addAll(mMenuArrayList, aMenuTitles);
         } else if (mPassvalue.equals("parents")) {
-            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.parents_dash_items );
+            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.parents_dash_items);
             Collections.addAll(mMenuArrayList, aMenuTitles);
         } else {
-            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.teacher_dash_items );
+            String[] aMenuTitles = mContext.getResources().getStringArray(R.array.teacher_dash_items);
             Collections.addAll(mMenuArrayList, aMenuTitles);
         }
 
@@ -76,6 +77,12 @@ public class DashboardFragment extends Fragment {
             @Override
             public void menuItem(int position) {
                 switch (position) {
+                    case 0:
+                        if (mPassvalue.equals("student"))
+                            mFragmentManager.updateContent(new TakeTestIntroFragment(), "Tests", null);
+                        else
+                            Toast.makeText(mContext, "Inprogress", Toast.LENGTH_SHORT).show();
+                        break;
                     case 3:
                         mFragmentManager.updateContent(new TestPortionFragment(), "TestPortionFragment", null);
                         break;
@@ -88,7 +95,7 @@ public class DashboardFragment extends Fragment {
             }
         };
 
-        mDashboardAdapter = new DashboardAdapter(mContext, mMenuArrayList, aMenuCallback,mPassvalue);
+        mDashboardAdapter = new DashboardAdapter(mContext, mMenuArrayList, aMenuCallback, mPassvalue);
         mRecyclerView.setAdapter(mDashboardAdapter);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);

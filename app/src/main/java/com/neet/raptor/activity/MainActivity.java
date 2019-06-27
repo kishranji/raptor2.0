@@ -19,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,8 +32,8 @@ import com.neet.raptor.fragment.DashboardFragment;
 import com.neet.raptor.fragment.HelpFragment;
 import com.neet.raptor.fragment.NotificationFragment;
 import com.neet.raptor.fragment.TestPortionFragment;
+import com.neet.raptor.fragment.student.TakeTestIntroFragment;
 import com.neet.raptor.fragmentmanager.APPFragmentManager;
-import com.neet.raptor.util.KeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -136,6 +135,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public void menuItem(int position) {
                 closeDrawer();
                 switch (position) {
+                    case 0:
+                        if (value.equals("student"))
+                            mFragmentManager.updateContent(new TakeTestIntroFragment(), "AssignTestFragment", null);
+                        else
+                            Toast.makeText(MainActivity.this, "Inprogress", Toast.LENGTH_SHORT).show();
+                        break;
                     case 3:
                         mFragmentManager.updateContent(new TestPortionFragment(), "TestPortionFragment", null);
                         break;
@@ -231,32 +236,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void logoutDialog() {
         //before inflating the custom alert dialog layout, we will get the current activity viewgroup
-        ViewGroup viewGroup = findViewById( android.R.id.content );
+        ViewGroup viewGroup = findViewById(android.R.id.content);
 
         //then we will inflate the custom alert dialog xml that we created
-        View dialogView = LayoutInflater.from( this ).inflate( R.layout.layout_logout_confirmation, viewGroup, false );
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_logout_confirmation, viewGroup, false);
 
 
-        dialogView.findViewById( R.id.btn_logout ).setOnClickListener( new View.OnClickListener() {
+        dialogView.findViewById(R.id.btn_logout).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick( View view ) {
+            public void onClick(View view) {
                 confirmationAlertDialog.cancel();
                 finish();
             }
-        } );
+        });
 
-        dialogView.findViewById( R.id.btn_cancel ).setOnClickListener( new View.OnClickListener() {
+        dialogView.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick( View view ) {
+            public void onClick(View view) {
                 confirmationAlertDialog.cancel();
             }
-        } );
+        });
 
         //Now we need an AlertDialog.Builder object
-        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         //setting the view of the builder to our custom view that we already inflated
-        builder.setView( dialogView );
+        builder.setView(dialogView);
 
         //finally creating the alert dialog and displaying it
         confirmationAlertDialog = builder.create();
