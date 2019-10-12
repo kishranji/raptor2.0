@@ -3,14 +3,14 @@
 
     <!--Login Page-->
     <string name="label_login">Login</string>
-    <string name="label_forgot_password">Forgot Password? Click here…</string>
+    <string name="label_forgot_password">Forgot Password?</string>
     <string name="label_forgot_your_password">Forgot Your Password?</string>
 
     <string name="hint_username">Enter User ID…</string>
     <string name="hint_password">Password</string>
-    <string name="label_otp_msg">You have requested to reset \nthe password for UserName</string>
+    <string name="label_otp_msg">You have requested to reset the password \nfor uername</string>
     <string name="label_submit">Submit</string>
-    <string name="label_login_confirmation_msg">By Pressong Okay\n The OTP will e sent to your \nCoordinator\'s Registered Number</string>
+    <string name="label_login_confirmation_msg">By Pressong Okay\n The OTP will e sent to your Coordinator\'s \nRegistered Number</string>
     <string name="label_okay">Okay</string>
     <string name="label_cancel">Cancel</string>
     <string name="label_enter_otp">Enter OTP</string>
@@ -19,8 +19,8 @@
     <string name="label_reset">Reset</string>
     <string name="label_go_back">Go Back</string>
     <string name="label_timer">Timer Comes here…</string>
-    <string name="label_submit_otp">SUBMIT</string>
-    <string name="label_resend_otp">RESEND</string>
+    <string name="label_submit_otp">Verify Now</string>
+    <string name="label_resend_otp">RESEND CODE</string>
 
 
     <string-array name="student_dash_items">
@@ -115,6 +115,7 @@
     \n\nThis section consites of questions obtained from PHYSICS, CHEMISTRY and BIOLOGY subjects from choosen NEET question paper. The question can be categorized into different competency levels  and each competency can be categorized into different complexity levels.</string>
     <string name="take_a_test">Take a test</string>
     <string name="full_test">Full test</string>
+    <string name="lable_remindme">Remind me</string>
 
 
 </resources>

@@ -39,10 +39,16 @@
     </style>
 
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/red</item>
-        <item name="boxStrokeWidth">1dp</item>
-        <item name="android:layout_marginTop">@dimen/margin_10</item>
-        <item name="android:textColorHint">@color/dark_grey</item>
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:textColorHint">@color/black</item>
+    </style>
+
+    <style name="HintTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_12</item>
     </style>
 
     <style name="OtpWidget" />

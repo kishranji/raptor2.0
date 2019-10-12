@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="@color/login_bg" />
+    <gradient
+        android:startColor="#627aee"
+        android:endColor="#4040ee"
+        android:angle="0"/>
 
     <stroke
         android:width="0dp"
         android:color="@android:color/white" />
 
-    <corners android:radius="@dimen/margin_5" />
+    <corners android:radius="@dimen/dimen15" />
 
     <padding
         android:bottom="@dimen/margin_2"
